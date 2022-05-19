@@ -26,33 +26,33 @@ public class AdminController {
     @Autowired
     private RoleRepository roleRepository;
 
-    @GetMapping({"/adminpanel/userlist"})
+    @GetMapping({"/adminPanel/userlist"})
     public String userlist(Model model){
         model.addAttribute("userList", this.userRepository.findAll());
-        return "adminpanel/userlist";
+        return "adminPanel/userlist";
     }
 
-    @GetMapping({"/adminpanel/userlist/delete/{id}"})
+    @GetMapping({"/adminPanel/userlist/delete/{id}"})
     public String deleteUser(@PathVariable Long id){
         userRepository.deleteById(id);
-/*        for (Information information: informationRepository.findAll()
+        for (Information information: informationRepository.findAll()
              ) {
             if(Objects.equals(information.getUser().getId(), id)){
                 informationRepository.deleteById(information.getId());
             }
-        }*/
+        }
         return "redirect:/adminPanel/userlist";
     }
 
-    @GetMapping({"/adminpanel/userlist/edit/{id}"})
+/*    @GetMapping({"/adminPanel/userlist/edit/{id}"})
     public String editUserForm(@PathVariable Long id, Model model){
 
-        model.addAttribute("user", userRepository.findById(id));
+        model.addAttribute("user", userRepository.findById(id);
 
         return "redirect:/adminPanel/userlist";
     }
 
-    @PostMapping({"/adminpanel/userlist/edit/{id}"})
+    @PostMapping({"/adminPanel/userlist/edit/{id}"})
     public String editUser(@PathVariable Long id, User user, BindingResult result){
         if(result.hasErrors()){
             user.setId(id);
@@ -61,26 +61,26 @@ public class AdminController {
 
         userRepository.save(user);
 
-        return "redirect:/adminpanel/userlist";
-    }
+        return "redirect:/adminPanel/userlist";
+    }*/
 
 
-    @GetMapping({"/adminpanel/adduser"})
+    @GetMapping({"/adminPanel/adduser"})
     public String addUserForm(Model model){
         model.addAttribute("roles", this.roleRepository.findAll());
 
         model.addAttribute("newuser", new User());
 
-        return "redirect:/adminpanel/userlist";
+        return "/adminPanel/adduser";
     }
 
-    @PostMapping({"/adminpanel/adduser"})
+    @PostMapping({"/adminPanel/adduser"})
     public String addUser(User user, Model model){
         model.addAttribute("newuser", user);
 
         userRepository.save(user);
 
-        return "redirect:/adminpanel/userlist";
+        return "redirect:/adminPanel/userlist";
     }
 
 }
