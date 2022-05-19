@@ -10,6 +10,10 @@ public interface InformationRepository extends CrudRepository<Information, Long>
 
     Optional<Information> findById(Long id);
 
-    Optional<Information> findByCategory(@Param("Category") String Category);
+    Optional<Information> findByCategory(@Param("Category") String category);
+
+    Optional<Information> findInformationByUser(@Param("User") String user);
+
+    Optional<Information> getAllByUserId(@Param("User_id") Long userID);
 
 }

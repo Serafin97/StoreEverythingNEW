@@ -16,27 +16,27 @@ import java.util.Objects;
 public class Information {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "information_id")
     private Long id;
 
-    @Column(name = "title", nullable = false, unique = true)
+    @Column(name = "title", nullable = false)
     @Length(min = 3, message = "*Tytuł musi zawierać conajmniej 3 znaki")
     private String title;
 
-    @Column(name = "content")
+    @Column(name = "content", nullable = false)
     @Length(min = 5, max = 500, message = "*Treść powinna zawierać od 5 do 500 znaków.")
     private String content;
 
-    @Column(name = "addDate")
+    @Column(name = "addDate", nullable = false)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date addDate;
 
-    @Column(name = "category")
+    @Column(name = "category", nullable = false)
     private String category;
 
-    @Column(name = "isShared")
+    @Column(name = "isShared", nullable = false, columnDefinition = "boolean default true")
     private boolean isShared;
 
     @ManyToOne

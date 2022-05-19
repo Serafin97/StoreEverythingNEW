@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <div th:replace="/fragments/header.html :: header"/>
+
+</head>
+<body>
+<div th:replace="/fragments/header.html :: navbar"/>
+
+<div class="container">
+    <div class="form-body">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Add User</h3>
+                        <form class="requires-validation" th:action="@{/adminPanel/adduser}" th:object="${newuser}" method="post">
+
+                            <div class="col-md-12 mt-3">
+                                <input class="form-control" type="text"  placeholder="Name" th:field="*{name}" pattern="[A-Z]{1}[a-z]{3-20}" required>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <input class="form-control" type="text" placeholder="Last name" th:field="*{lastName}" minlength="3" maxlength="50" pattern="[A-Z]{1}[a-z]{3-50}" required>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <input class="form-control" type="email" placeholder="E-mail Address" th:field="*{email}" required>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <input class="form-control" type="text" placeholder="Username" th:field="*{username}"  minlength="3" maxlength="20" pattern="^[a-z]+$" required>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <input class="form-control" type="password" placeholder="Password" th:field="*{password}" minlength="5" required>
+                            </div>
+
+                            <div class="col-md-12 mt-3 ">
+                                <input class="form-control" type="number" placeholder="Age" th:field="*{age}" pattern="[0-9]{2}" required>
+                            </div>
+
+                            <div class="col-md-12">
+                                <select class="form-select mt-3" th:field="*{roles}"  required>
+                                    <option th:each="role : ${roles}"
+                                            th:value="${role.id}"
+                                            th:text="${role.name}">
+                                </select>
+                            </div>
+
+                            <div class="form-button mt-3">
+                                <button type="submit" class="btn btn-primary">Add User</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <div th:replace="/fragments/header.html :: header"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -16,10 +16,10 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-xs-6">
-                            <h2>Manage <b>Employees</b></h2>
+                            <h2>Manage <b>Users</b></h2>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+                            <a th:href="@{/adminPanel/adduser}" class="btn btn-success"  data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
                             <!--<a href="#" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete User</span></a>-->
                         </div>
                     </div>
@@ -34,27 +34,26 @@
                             </span>
                         </th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Role</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                        <th>Username</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr th:each="user : ${userList}">
                         <td>
                             <span class="custom-checkbox">
                                 <input type="checkbox" id="checkbox1"  value="1">
                                 <label for="checkbox1"></label>
                             </span>
                         </td>
-                        <td>Thomas Hardy</td>
-                        <td>thomashardy@mail.com</td>
-                        <td>89 Chiaroscuro Rd, Portland, USA</td>
-                        <td>(171) 555-2222</td>
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.age}"></td>
+                        <td th:text="${user.username}"></td>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a href="#" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a th:href="'/adminPanel/userlist/delete/' + ${user.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>
                     </tbody>
