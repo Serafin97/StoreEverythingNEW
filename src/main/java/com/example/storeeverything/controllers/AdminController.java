@@ -5,6 +5,7 @@ import com.example.storeeverything.models.User;
 import com.example.storeeverything.repositories.InformationRepository;
 import com.example.storeeverything.repositories.RoleRepository;
 import com.example.storeeverything.repositories.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Objects;
 import java.util.Optional;
 
+@Slf4j
 @Controller
 public class AdminController {
 
@@ -54,12 +56,13 @@ public class AdminController {
         return "/adminPanel/edituser";
     }
 
-    @PostMapping({"/adminPanel/userlist/update/{id}"})
+    @PostMapping({"/adminPanel/userlist/edit/{id}"})
     public String editUser(@PathVariable Long id, User user, BindingResult result){
-        if(result.hasErrors()){
+
+/*        if(result.hasErrors()){
             user.setId(id);
             return "redirect:/adminPanel/userlist";
-        }
+        }*/
 
         userRepository.save(user);
 
@@ -70,7 +73,6 @@ public class AdminController {
     @GetMapping({"/adminPanel/adduser"})
     public String addUserForm(Model model){
         model.addAttribute("roles", this.roleRepository.findAll());
-
         model.addAttribute("newuser", new User());
 
         return "/adminPanel/adduser";
