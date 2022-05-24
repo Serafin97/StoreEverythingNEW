@@ -17,18 +17,20 @@ public class MyUserDetailsService implements  UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-/*        Optional<User> user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
 
-        if(user.isEmpty()){
+        if(user == null){
             throw new UsernameNotFoundException(username);
-        }*/
+        }
 
+/*
         return userRepository
                 .findByUsernameIgnoreCase(username)
                 .map(MyUserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
+*/
 
-        /*return new MyUserDetails(user);*/
+        return new MyUserDetails(user);
 
     }
 

@@ -66,16 +66,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();
- /*               .loginPage("/login")
-                .usernameParameter("login")
+                .formLogin()
+                .loginPage("/login")
                 .defaultSuccessUrl("/index", false)
                 .permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/?logout").permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/");*/
+                .exceptionHandling().accessDeniedPage("/");
 
 
     }

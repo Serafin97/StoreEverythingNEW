@@ -1,8 +1,8 @@
 
 INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (1, 'admin@mail.com', '$2a$12$DSeznl66kU/SL5SiVcQH2eRdOfCrY7IDe9mExTOySLyAI9Olrg0Lq',  'admin', 'admin', 'admin', 18);
-INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (2, 'user@mail.com', 'user',  'user', 'user', 'user', 18);
-INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (3, 'fulluser@mail.com', 'fulluser',  'fulluser', 'fulluser', 'fulluser', 18);
-INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (4, 'tomek@gmail.com', 'tomek',  'tomek', 'tomek', 'tomek', 21);
+INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (2, 'user@mail.com', '$2a$12$Wxs066XoOD/QNi0yO/lTleqaYSU1JdznHfqw/v7wf705.mVv4tqiq',  'user', 'user', 'user', 18);
+INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (3, 'fulluser@mail.com', '$2a$12$i7vWHfoh7ulX3yGnZdLBT.jwiyD3avZeHpEVXfI683YkSUGHX8quy',  'fulluser', 'fulluser', 'fulluser', 18);
+INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (4, 'tomek@gmail.com', '$2a$12$jhpq2vYCwTIv8Oj1PUDDNu60/eRexeybhSQJJxqS4.tI3ICakexXu',  'tomek', 'tomek', 'tomek', 21);
 
 Insert into role(role_id, name) values(1,'ADMIN');
 Insert into role(role_id, name) values(2,'USER');
