@@ -3,6 +3,7 @@ package com.example.storeeverything.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,9 +18,6 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private DataSource dataSource;
-
     @Bean
     public UserDetailsService userDetailsService() {
         return new MyUserDetailsService();
@@ -31,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
@@ -50,25 +48,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.headers().frameOptions().disable();
 
         httpSecurity.authorizeRequests()
-                .antMatchers("/*", "/css/**", "/js/**", "/images/**", "/webjars/**","/h2/**","/" ).permitAll();
-/*               .antMatchers("/index").hasAnyAuthority("L_USER", "F_USER", "ADMIN")
-                .antMatchers("/informations/**").hasAnyAuthority("F_USER", "ADMIN")
-                .antMatchers("/informations_limited/**").hasAnyAuthority("L_USER", "F_USER", "ADMIN")
-                .antMatchers("/user/**").hasAnyAuthority("L_USER", "F_USER", "ADMIN")
-                .antMatchers("/categories/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/*", "/css/**", "/webjars/**","/h2/**","/" ).permitAll()
+                .antMatchers("/index").hasAnyAuthority("ADMIN","USER","FULLUSER")
+                .antMatchers("/register").hasAnyAuthority("ADMIN","USER","FULLUSER")
+                .antMatchers("/informations/**").hasAnyAuthority("FULLUSER", "ADMIN")
+                .antMatchers("/adminPanel/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                *//*.loginPage("/login")*//*
+                .loginPage("/login")
                 .usernameParameter("login")
-                .defaultSuccessUrl("/afterLoggingIn")
+                .defaultSuccessUrl("/index", false)
                 .permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/?logout").permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/error/403");*/
+                .exceptionHandling().accessDeniedPage("/");
 
 
     }

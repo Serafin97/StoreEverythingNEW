@@ -12,9 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -44,15 +44,16 @@ public class AdminController {
         return "redirect:/adminPanel/userlist";
     }
 
-/*    @GetMapping({"/adminPanel/userlist/edit/{id}"})
+    @GetMapping({"/adminPanel/userlist/edit/{id}"})
     public String editUserForm(@PathVariable Long id, Model model){
 
-        model.addAttribute("user", userRepository.findById(id);
+        model.addAttribute("user", userRepository.findById(id));
+        model.addAttribute("roles", roleRepository.findAll());
 
-        return "redirect:/adminPanel/userlist";
+        return "/adminPanel/edituser";
     }
 
-    @PostMapping({"/adminPanel/userlist/edit/{id}"})
+    @PostMapping({"/adminPanel/userlist/update/{id}"})
     public String editUser(@PathVariable Long id, User user, BindingResult result){
         if(result.hasErrors()){
             user.setId(id);
@@ -62,7 +63,7 @@ public class AdminController {
         userRepository.save(user);
 
         return "redirect:/adminPanel/userlist";
-    }*/
+    }
 
 
     @GetMapping({"/adminPanel/adduser"})

@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
+import java.util.Set;
 
 
 @Getter
@@ -18,6 +19,14 @@ import java.util.Collection;
 @Entity
 @Table(name = "user")
 public class  User {
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +65,7 @@ public class  User {
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
     private Collection<Information> informations;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Collection<Role> roles;
 

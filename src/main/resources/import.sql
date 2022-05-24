@@ -1,5 +1,5 @@
 
-INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (1, 'admin@mail.com', 'admin',  'admin', 'admin', 'admin', 18);
+INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (1, 'admin@mail.com', '$2a$12$DSeznl66kU/SL5SiVcQH2eRdOfCrY7IDe9mExTOySLyAI9Olrg0Lq',  'admin', 'admin', 'admin', 18);
 INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (2, 'user@mail.com', 'user',  'user', 'user', 'user', 18);
 INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (3, 'fulluser@mail.com', 'fulluser',  'fulluser', 'fulluser', 'fulluser', 18);
 INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (4, 'tomek@gmail.com', 'tomek',  'tomek', 'tomek', 'tomek', 21);

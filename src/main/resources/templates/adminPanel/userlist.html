@@ -20,7 +20,6 @@
                         </div>
                         <div class="col-xs-6">
                             <a th:href="@{/adminPanel/adduser}" class="btn btn-success"  data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
-                            <!--<a href="#" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete User</span></a>-->
                         </div>
                     </div>
                 </div>
@@ -52,7 +51,7 @@
                         <td th:text="${user.age}"></td>
                         <td th:text="${user.username}"></td>
                         <td>
-                            <a href="#" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a th:href="'/adminPanel/userlist/edit/' + ${user.id}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             <a th:href="'/adminPanel/userlist/delete/' + ${user.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>

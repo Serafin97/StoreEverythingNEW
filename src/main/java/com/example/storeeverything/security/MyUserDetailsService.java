@@ -23,9 +23,13 @@ public class MyUserDetailsService implements  UserDetailsService {
             throw new UsernameNotFoundException(username);
         }*/
 
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        return userRepository
+                .findByUsernameIgnoreCase(username)
+                .map(MyUserDetails::new)
+                .orElseThrow(() -> new UsernameNotFoundException(username));
 
-        return new MyUserDetails(user);
+        /*return new MyUserDetails(user);*/
+
     }
 
 }
