@@ -50,7 +50,7 @@ public class AdminController {
     @GetMapping({"/adminPanel/userlist/edit/{id}"})
     public String editUserForm(@PathVariable Long id, Model model){
 
-        model.addAttribute("user", userRepository.findById(id));
+        model.addAttribute("user", userRepository.findById(id).get());
         model.addAttribute("roles", roleRepository.findAll());
 
         return "/adminPanel/edituser";
