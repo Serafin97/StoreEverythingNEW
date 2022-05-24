@@ -35,12 +35,13 @@ public class AdminController {
     @GetMapping({"/adminPanel/userlist/delete/{id}"})
     public String deleteUser(@PathVariable Long id){
         userRepository.deleteById(id);
-        for (Information information: informationRepository.findAll()
+
+/*        for (Information information: informationRepository.findAll()
              ) {
             if(Objects.equals(information.getUser().getId(), id)){
                 informationRepository.deleteById(information.getId());
             }
-        }
+        }*/
         return "redirect:/adminPanel/userlist";
     }
 

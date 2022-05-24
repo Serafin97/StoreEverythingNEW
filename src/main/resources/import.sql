@@ -4,9 +4,9 @@ INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALU
 INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (3, 'fulluser@mail.com', 'fulluser',  'fulluser', 'fulluser', 'fulluser', 18);
 INSERT INTO USER (user_id, email, password, username, name, last_name, age) VALUES (4, 'tomek@gmail.com', 'tomek',  'tomek', 'tomek', 'tomek', 21);
 
-Insert into role(role_id, name) values(1,'admin');
-Insert into role(role_id, name) values(2,'user');
-Insert into role(role_id, name) values(3,'fulluser');
+Insert into role(role_id, name) values(1,'ADMIN');
+Insert into role(role_id, name) values(2,'USER');
+Insert into role(role_id, name) values(3,'FULLUSER');
 
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1);
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2);

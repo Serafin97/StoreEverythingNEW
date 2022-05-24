@@ -19,8 +19,8 @@ public class Role {
     @Column(name = "name", unique = true)
     private String name;
 
-/*    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "roles", fetch=FetchType.EAGER)
-    private Collection<User> users;*/
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "roles")
+    private Collection<User> users;
 
     public Role() {
     }

@@ -65,7 +65,7 @@ public class  User {
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
     private Collection<Information> informations;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Collection<Role> roles;
 
@@ -91,9 +91,6 @@ public class  User {
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-
-                /*", active=" + active +*/
-
                 ", roles=" + roles +
                 '}';
     }
