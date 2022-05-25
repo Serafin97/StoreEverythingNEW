@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.Objects;
 
@@ -34,6 +35,7 @@ public class Information {
     private Date addDate;
 
     @Column(name = "category", nullable = false)
+    @Pattern(regexp = "^[a-z]{3,20}$", message = "Kategoria musi składać się tylko z małych liter.")
     private String category;
 
     @Column(name = "isShared", nullable = false, columnDefinition = "boolean default true")

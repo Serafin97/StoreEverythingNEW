@@ -8,8 +8,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.util.Collection;
 import java.util.Set;
 
@@ -52,14 +51,17 @@ public class  User {
     @Column(name = "name")
     @Length(min = 3, max = 20, message = "*Imię powinno mieć 3-20 znaków")
     @NotBlank(message = "*Proszę podać imie")
+    @Pattern(regexp = "^[A-Z][a-z]{3,19}$", message = "Pierwsza litera musi być wielka :")
     private String name;
 
     @Column(name = "last_name")
     @Length(min = 3, max = 50, message = "*Nazwisko powinno mieć 3-50 znaków")
     @NotBlank(message = "*Prosze podać nazwisko")
+    @Pattern(regexp = "^[A-Z][a-z]{3,50}$", message = "Pierwsza litera musi być wielka :")
     private String lastName;
 
     @Column(name="age", nullable=false)
+    @Min(value = 18, message = "Musisz mieć skończone 18 lat. Jesteś za malutki żeby przechowywać notatki :)")
     private int age;
 
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")

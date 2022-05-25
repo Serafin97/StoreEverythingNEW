@@ -6,9 +6,13 @@ import com.example.storeeverything.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class HomeController {
@@ -39,9 +43,13 @@ public class HomeController {
     }
 
     @PostMapping({"/register"})
-    public String addUser(User user, Model model){
-        model.addAttribute("newuser", user);
+    public String addUser(@Valid @ModelAttribute("newuser") User user, Model model, BindingResult result){
+        if (result.hasErrors()){
 
+            return "register";
+        }
+
+        model.addAttribute("newuser", user);
         userRepository.save(user);
 
         return "redirect:/adminPanel/userlist";

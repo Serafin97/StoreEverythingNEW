@@ -28,6 +28,7 @@
 
                             <div class="col-md-12 mt-3">
                                 <input class="form-control" type="text"  placeholder="Name" th:field="*{name}"  minlength="3" maxlength="20" pattern="[A-Z]{1}[a-z]{3-20}" required>
+                                <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
                             </div>
 
                             <div class="col-md-12 mt-3">
