@@ -17,27 +17,33 @@
                     <form class="requires-validation" th:action="@{/adminPanel/adduser}" th:object="${newuser}" method="post">
 
                         <div class="col-md-12 mt-3">
-                            <input class="form-control" type="text"  placeholder="Name" th:field="*{name}"  minlength="3" maxlength="20" pattern="[A-Z]{1}[a-z]{3-20}" required>
+                            <input class="form-control" type="text"  placeholder="Name" th:field="*{name}" required>
+                            <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
                         </div>
 
                         <div class="col-md-12 mt-3">
-                            <input class="form-control" type="text" placeholder="Last name" th:field="*{lastName}" minlength="3" maxlength="50" pattern="[A-Z]{1}[a-z]{3-50}" required>
+                            <input class="form-control" type="text" placeholder="Last name" th:field="*{lastName}" required>
+                            <p class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</p>
                         </div>
 
                         <div class="col-md-12 mt-3">
                             <input class="form-control" type="email" placeholder="E-mail Address" th:field="*{email}" required>
+                            <p class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</p>
                         </div>
 
                         <div class="col-md-12 mt-3">
-                            <input class="form-control" type="text" placeholder="Username" th:field="*{username}"  minlength="3" maxlength="20" pattern="^[a-z]+$" required>
+                            <input class="form-control" type="text" placeholder="Username" th:field="*{username}" required>
+                            <p class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</p>
                         </div>
 
                         <div class="col-md-12 mt-3">
                             <input class="form-control" type="password" placeholder="Password" th:field="*{password}" minlength="5" required>
+                            <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</p>
                         </div>
 
                         <div class="col-md-12 mt-3 ">
                             <input class="form-control" type="number" placeholder="Age" th:field="*{age}" required>
+                            <p class="alert alert-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</p>
                         </div>
 
                         <div class="col-md-12">

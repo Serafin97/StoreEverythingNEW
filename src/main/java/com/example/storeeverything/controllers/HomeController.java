@@ -43,14 +43,14 @@ public class HomeController {
     }
 
     @PostMapping({"/register"})
-    public String addUser(@Valid @ModelAttribute("newuser") User user, Model model, BindingResult result){
+    public String addUser(@Valid @ModelAttribute("newuser") User user, BindingResult result, Model model){
         if (result.hasErrors()){
 
             return "register";
         }
-
-        model.addAttribute("newuser", user);
         userRepository.save(user);
+        model.addAttribute("newuser", user/*userRepository.findAll()*/);
+
 
         return "redirect:/adminPanel/userlist";
     }
