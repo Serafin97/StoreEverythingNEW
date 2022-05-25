@@ -13,8 +13,18 @@
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3>Add User</h3>
-                        <form class="requires-validation" th:action="@{/adminPanel/adduser}" th:object="${newuser}" method="post">
+                        <h3 class="text-white">Register</h3>
+                        <form class="requires-validation" th:action="@{/register}" th:object="${newuser}" method="post">
+
+                            <div class="col-md-12">
+
+                                <select class="form-select mt-3" th:field="*{roles}" id="role" required>
+                                    <option th:each="role : ${roles}"
+                                            th:value="${role.id}"
+                                            th:text="${role.name}"
+                                            th:if="${role.name != 'ADMIN'}">
+                                </select>
+                            </div>
 
                             <div class="col-md-12 mt-3">
                                 <input class="form-control" type="text"  placeholder="Name" th:field="*{name}"  minlength="3" maxlength="20" pattern="[A-Z]{1}[a-z]{3-20}" required>
@@ -38,14 +48,6 @@
 
                             <div class="col-md-12 mt-3 ">
                                 <input class="form-control" type="number" placeholder="Age" th:field="*{age}" required>
-                            </div>
-
-                            <div class="col-md-12">
-                                <select class="form-select mt-3" th:field="*{roles}"  required>
-                                    <option th:each="role : ${roles}"
-                                            th:value="${role.id}"
-                                            th:text="${role.name}">
-                                </select>
                             </div>
 
                             <div class="form-button mt-3">
