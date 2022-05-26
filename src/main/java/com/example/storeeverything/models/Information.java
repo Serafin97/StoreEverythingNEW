@@ -1,5 +1,6 @@
 package com.example.storeeverything.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
@@ -7,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -30,9 +32,9 @@ public class Information {
     private String content;
 
     @Column(name = "addDate", nullable = false)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date addDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonFormat(pattern = "MM/dd/yyyy")
+    private LocalDate addDate;
 
     @Column(name = "category", nullable = false)
     @Pattern(regexp = "^[a-z]{3,20}$", message = "Kategoria musi składać się tylko z małych liter.")
@@ -49,7 +51,7 @@ public class Information {
     public Information() {
     }
 
-    public Information(String title, String content, Date addDate, String category) {
+    public Information(String title, String content, LocalDate addDate, String category) {
         this.title = title;
         this.content = content;
         this.addDate = addDate;
