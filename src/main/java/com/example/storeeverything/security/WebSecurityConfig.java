@@ -58,12 +58,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 
         httpSecurity.authorizeRequests()
-                .antMatchers("/*", "/css/**", "/webjars/**","/h2/**","/" ).permitAll()
-                .antMatchers("/index").hasAnyAuthority("ADMIN","USER","FULLUSER")
-                .antMatchers("/register").hasAnyAuthority("ADMIN","USER","FULLUSER")
-                .antMatchers("/informations/**").hasAnyAuthority("FULLUSER", "ADMIN")
+                .antMatchers("/*", "/css/**", "/webjars/**","/h2/**","/","/index" ).permitAll()
+                .antMatchers("/informations/**").hasAnyAuthority("FULLUSER","USER", "ADMIN")
+                .antMatchers("/informations/myinformations").hasAnyAuthority("FULLUSER", "ADMIN")
                 .antMatchers("/adminPanel/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -74,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/?logout").permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/")
+                .exceptionHandling().accessDeniedPage("/accessDenied")
                 .and()
                 .rememberMe().userDetailsService(this.userDetailsService());
 

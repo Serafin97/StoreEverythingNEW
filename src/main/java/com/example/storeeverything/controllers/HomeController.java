@@ -31,6 +31,11 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/accessDenied")
+    public String accessDenied(){
+        return "accessDenied";
+    }
+
 
     @GetMapping("/login")
     public String loginPage(){

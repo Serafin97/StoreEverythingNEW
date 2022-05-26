@@ -1,11 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <div th:replace="/fragments/header.html :: header"/>
 
+    <style>
+        a{
+            color: black;
+            text-decoration:none;
+        }
+
+        a:hover{
+            color: lightskyblue;
+            text-decoration:none;
+            cursor:pointer;
+        }
+
+    </style>
 </head>
 <body>
     <div th:replace="/fragments/header.html :: navbar"/>
-    shared informations
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="page-content container note-has-grid">
+
+        <ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
+            <li class="nav-item">
+                <a href="#" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" id="all-category">
+                    <i class="icon-layers mr-1"></i><span class="d-none d-md-block">All Notes</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" id="note-business"> <i class="icon-briefcase mr-1"></i><span class="d-none d-md-block">Business</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" id="note-social"> <i class="icon-share-alt mr-1"></i><span class="d-none d-md-block">Social</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" id="note-important"> <i class="icon-tag mr-1"></i><span class="d-none d-md-block">Important</span></a>
+            </li>
+            <li class="nav-item ml-auto">
+                <a href="#" class="nav-link btn-primary rounded-pill d-flex align-items-center px-3" id="add-notes"> <i class="icon-note m-1"></i><span class="d-none d-md-block font-14">Add Notes</span></a>
+            </li>
+        </ul>
+
+        <div class="tab-content bg-transparent">
+            <div id="note-full-container" class="note-has-grid row">
+                <div th:each="information : ${informations}" th:if="${information.isShared == true}" class="col-md-4 single-note-item all-category" >
+                    <a th:href="'/informations/choseninformation' + ${information.id}">
+                    <div class="card card-body" id="card">
+                        <span class="side-stick"></span>
+                        <h5 class=" text-truncate w-75 mb-0" th:text="${information.title}" ></h5>
+                        <p class=" font-12 text-muted" th:text="${information.addDate} + ' by ' + ${information.user.username}"></p>
+                        <div class="note-content">
+                            <p class="note-inner-content text-muted text-truncate" th:text="${information.content}"></p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </body>
 </html>

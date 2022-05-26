@@ -5,6 +5,7 @@
 
     <link href="css/login.css"
           rel="stylesheet">
+
 </head>
 <body>
 <div th:replace="/fragments/header.html :: navbar"/>
@@ -17,12 +18,13 @@
             <div th:if="${param.error}" class="alert alert-danger">
                 Wrong username or password.
             </div>
-            <input type="text" id="login" class="fadeIn second" name="username" placeholder="login">
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+            <input type="text" id="login" class="fadeIn first" name="username" placeholder="login">
+            <input type="password" id="password" class="fadeIn second" name="password" placeholder="password">
+            <div class="fadeIn third">
             <label id="rememberLabel" for="remember"> Remember Me </label>
-            <input type="checkbox" id="remember" class="fadeIn fourth" name="remember-me">
+            <input type="checkbox" id="remember"  name="remember-me">
+            </div>
             <input type="submit" class="fadeIn fourth" value="Log In">
-
         </form>
 
 

@@ -27,7 +27,8 @@
             <div class="collapse navbar-collapse" >
 
                 <ul class="navbar-nav me-auto text-light" >
-                    <li class="nav-item  "><a class="nav-link" th:href="@{/informations/main}" >Notes</a></li>
+                    <li class="nav-item  "><a class="nav-link" th:href="@{/informations/sharedinformations}" >Notes</a></li>
+                    <li class="nav-item  "><a class="nav-link" th:href="@{/informations/myinformations}" >My notes</a></li>
 <!--                    <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/adminPanel/userlist}" >Users</a></li>-->
                     <sec:authorize access="hasAnyRole('ADMIN')">
                         <li class="nav-item"><a class="nav-link" th:href="@{/adminPanel/userlist}" >Users</a></li>
