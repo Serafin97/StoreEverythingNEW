@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
     <div th:fragment="header">
@@ -26,14 +27,23 @@
             <div class="collapse navbar-collapse" >
 
                 <ul class="navbar-nav me-auto text-light" >
-                    <li class="nav-item  "><a class="nav-link" th:href="@{#}" >Notes</a></li>
-                    <li class="nav-item  "><a class="nav-link" th:href="@{/informations/main}" >Users</a></li>
+                    <li class="nav-item  "><a class="nav-link" th:href="@{/informations/main}" >Notes</a></li>
+<!--                    <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/adminPanel/userlist}" >Users</a></li>-->
+                    <sec:authorize access="hasAnyRole('ADMIN')">
+                        <li class="nav-item"><a class="nav-link" th:href="@{/adminPanel/userlist}" >Users</a></li>
+                    </sec:authorize>
+
+
+
                 </ul>
 
                 <ul class="navbar-nav ms-auto me-5 text-light">
-                    <li class="nav-item  "><a class="nav-link" th:href="@{/login}" >Log In</a></li>
-                    <li class="nav-item  "><a class="nav-link" th:href="@{/register}" >Sing Up</a></li>
+                    <li th:if="${#httpServletRequest.remoteUser==null}" class="nav-item"><a class="nav-link" th:href="@{/login}" >Log In</a></li>
+                    <li th:if="${#httpServletRequest.remoteUser==null}" class="nav-item"><a class="nav-link" th:href="@{/register}" >Sing Up</a></li>
+                    <li th:if="${#httpServletRequest.remoteUser}" class="nav-item"><a class="nav-link" th:href="@{#}">Hello <span sec:authentication="name"></span></a></li>
+                    <li th:if="${#httpServletRequest.remoteUser}" class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
                 </ul>
+
             </div>
         </nav>
     </div>

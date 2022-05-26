@@ -7,6 +7,7 @@ import com.example.storeeverything.repositories.RoleRepository;
 import com.example.storeeverything.repositories.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,12 +41,6 @@ public class AdminController {
     public String deleteUser(@PathVariable Long id){
         userRepository.deleteById(id);
 
-/*        for (Information information: informationRepository.findAll()
-             ) {
-            if(Objects.equals(information.getUser().getId(), id)){
-                informationRepository.deleteById(information.getId());
-            }
-        }*/
         return "redirect:/adminPanel/userlist";
     }
 
@@ -60,17 +55,20 @@ public class AdminController {
 
     @PostMapping({"/adminPanel/userlist/edit/{id}"})
     public String editUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
-
-            if(result.hasErrors()){
+        if(result.hasErrors()){
+            model.addAttribute("roles", roleRepository.findAll());
             return "/adminPanel/edituser";
         }
+
+/*        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String password = passwordEncoder.encode(user.getPassword());
+        user.setPassword(password);*/
 
         userRepository.save(user);
         model.addAttribute("user", user.getId());
 
         return "redirect:/adminPanel/userlist";
     }
-
 
     @GetMapping({"/adminPanel/adduser"})
     public String addUserForm(Model model){
@@ -83,9 +81,13 @@ public class AdminController {
     @PostMapping({"/adminPanel/adduser"})
     public String addUser(@Valid @ModelAttribute("newuser") User user, BindingResult result, Model model){
         if (result.hasErrors()){
-
+            model.addAttribute("roles", roleRepository.findAll());
             return "/adminPanel/adduser";
         }
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String password = passwordEncoder.encode(user.getPassword());
+        user.setPassword(password);
 
         userRepository.save(user);
         model.addAttribute("newuser", user);

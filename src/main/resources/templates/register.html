@@ -21,7 +21,7 @@
                                 <select class="form-select mt-3" th:field="*{roles}" id="role" required>
                                     <option th:each="role : ${roles}"
                                             th:value="${role.id}"
-                                               th:text="${role.name}"
+                                            th:text="${role.name}"
                                             th:if="${role.name != 'ADMIN'}">
                                 </select>
                             </div>
@@ -57,7 +57,7 @@
                             </div>
 
                             <div class="form-button mt-3">
-                                <button type="submit" class="btn btn-primary">Add User</button>
+                                <button type="submit" class="btn btn-primary">Create account</button>
                             </div>
                         </form>
                     </div>

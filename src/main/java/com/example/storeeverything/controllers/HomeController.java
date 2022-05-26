@@ -4,6 +4,7 @@ import com.example.storeeverything.models.User;
 import com.example.storeeverything.repositories.RoleRepository;
 import com.example.storeeverything.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -45,14 +48,20 @@ public class HomeController {
     @PostMapping({"/register"})
     public String addUser(@Valid @ModelAttribute("newuser") User user, BindingResult result, Model model){
         if (result.hasErrors()){
-
+            model.addAttribute("roles", roleRepository.findAll());
             return "register";
         }
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String password = passwordEncoder.encode(user.getPassword());
+        user.setPassword(password);
+
+
         userRepository.save(user);
         model.addAttribute("newuser", user/*userRepository.findAll()*/);
 
 
-        return "redirect:/adminPanel/userlist";
+        return "/registerdone";
     }
 
 }

@@ -16,9 +16,8 @@ public class InformationController {
     @Autowired
     private RoleRepository roleRepository;
 
-    @GetMapping({"/indormations/main"})
-    public String informationMain(Model model){
-        model.addAttribute("informations", this.informationRepository.findAll());
+    @GetMapping("/informations/main")
+    public String loginPage(){
         return "informations/main";
     }
 

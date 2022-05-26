@@ -51,13 +51,13 @@ public class  User {
     @Column(name = "name")
     @Length(min = 3, max = 20, message = "*Imię powinno mieć 3-20 znaków")
     @NotBlank(message = "*Proszę podać imie")
-    @Pattern(regexp = "^[A-Z][a-z]{3,19}$", message = "Pierwsza litera musi być wielka :")
+    @Pattern(regexp = "^[A-Z][a-z]{3,19}$", message = "Pierwsza litera musi być wielka :)")
     private String name;
 
     @Column(name = "last_name")
     @Length(min = 3, max = 50, message = "*Nazwisko powinno mieć 3-50 znaków")
     @NotBlank(message = "*Prosze podać nazwisko")
-    @Pattern(regexp = "^[A-Z][a-z]{3,50}$", message = "Pierwsza litera musi być wielka :")
+    @Pattern(regexp = "^[A-Z][a-z]{3,50}$", message = "Pierwsza litera musi być wielka :)")
     private String lastName;
 
     @Column(name="age", nullable=false)
