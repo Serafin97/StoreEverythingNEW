@@ -4,6 +4,7 @@ import com.example.storeeverything.models.Information;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface InformationRepository extends JpaRepository<Information, Long> {
@@ -23,5 +24,6 @@ public interface InformationRepository extends JpaRepository<Information, Long> 
     Information findInformationByUser(@Param("User") String user);
 
     Information getAllByUserId(@Param("User_id") Long userID);
+    /*List<Information> findByOrderByCategoryDesc(@Param("Category") String category);*/
 
 }

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org"
-                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+                xmlns:security="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 
 <head>
     <div th:fragment="header">
@@ -28,18 +30,17 @@
 
                 <ul class="navbar-nav me-auto text-light" >
                     <li class="nav-item  "><a class="nav-link" th:href="@{/informations/sharedinformations}" >Notes</a></li>
-                    <li class="nav-item  "><a class="nav-link" th:href="@{/informations/myinformations}" >My notes</a></li>
-<!--                    <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/adminPanel/userlist}" >Users</a></li>-->
+                    <div sec:authorize="isAuthenticated()">
+                        <div sec:authorize="hasAnyAuthority('ADMIN','FULLUSER')">
+                            <li class="nav-item  "><a class="nav-link" th:href="@{/informations/myinformations}" >My notes</a></li>
+                        </div>
+                    </div>
 
                     <div sec:authorize="isAuthenticated()">
-                        <div sec:authorize="hasRole('ADMIN')">
-                        <sec:authorize access="hasAnyRole('ADMIN')">
+                        <div sec:authorize="hasAuthority('ADMIN')">
                         <li class="nav-item"><a class="nav-link" th:href="@{/adminPanel/userlist}" >Users</a></li>
-                    </sec:authorize>
+                        </div>
                     </div>
-                    </div>
-
-
 
                 </ul>
 

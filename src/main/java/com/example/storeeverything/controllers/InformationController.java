@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @Controller
 public class InformationController {
 
@@ -33,7 +35,12 @@ public class InformationController {
             model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.ASC, "category"))));
         } else if (sort == 2) {
             model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.DESC, "category"))));
-        } else if (sort == 4) {
+        }/*else if(sort == 3) {
+            List<Information> informations = informationRepository.findAll(Sort.by(Sort.Direction.DESC, "Category"));
+            *//*model.addAttribute("informations", PageRequest.of(0, 30, informations);*//*
+            //model.addAttribute("informations", informationRepository.findAll());
+        }*/
+        else if (sort == 4) {
             model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.ASC, "addDate"))));
         } else if (sort == 5) {
             model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.DESC, "addDate"))));
