@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <div th:replace="/fragments/header.html :: header"/>
 
@@ -31,34 +31,39 @@
 <body>
 <div th:replace="/fragments/header.html :: navbar"/>
 
-<!--    <div class="jumbotron vertical-center">
-        <div class="container">
-            <div id="note-full-container" class="note-has-grid row">
-                <div th:if="${information.isShared == true}" class="col-md-4 single-note-item all-category" >
-                    <a th:href="'/informations/choseninformation/' + ${information.id}">
-                        <div class="card card-body" id="card">
-                            <span class="side-stick"></span>
-                            <p class=" font-12 text-muted" th:text="'Category: ' +${information.category}"></p>
-                            <h5 class=" text-truncate w-75 mb-0" th:text="${information.title}" ></h5>
-                            <p class=" font-12 text-muted" th:text="${information.addDate} + ' by ' + ${information.user.username}"></p>
-                            <div class="note-content">
-                                <p class="note-inner-content text-muted text-truncate" th:text="${information.content}"></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>-->
 
 <div calss="container">
     <div class="row">
-    <div class="col-sm-3">
-
+    <div class="col-md-3">
     </div>
-    <div  class="col-sm-6">
+    <div  class="col-md-6">
+        <div id="note-full-container" class="note-has-grid row">
+            <div class=" single-note-item all-category" >
 
+                    <div class="card card-body" id="card">
+                        <span class="side-stick"></span>
+                        <p class=" font-12 text-muted" th:text="'Category: ' +${information.category}"></p>
+                        <h5 class=" text-truncate w-75 mb-0" th:text="${information.title}" ></h5>
+                        <p class=" font-12 text-muted" th:text="${information.addDate} + ' by ' + ${information.user.username}"></p>
+                        <div class="note-content">
+                            <p class="note-inner-content text-muted " th:text="${information.content}"></p>
+                        </div>
+
+                        <div th:if="${information.user.username == loggeduser}">
+                            <div th:if="${information.isShared == true}">
+                                <label style="font-size:19px" for="notelink" >Link: </label><input class="" type="text" id="notelink" th:value="${link}" style="width: 500px" readonly>
+                            </div>
+                            <div class ="float-end">
+                                <button class="btn btn-dark mt-3">Edit</button>
+                                <button class="btn btn-danger mt-3">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
     </div>
-    <div class="col-sm-3">
-
+    <div class="col-md-3">
     </div>
     </div>
 </div>
