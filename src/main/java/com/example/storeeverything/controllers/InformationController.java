@@ -30,15 +30,23 @@ public class InformationController {
     public String myInformations(@PathVariable int sort, Model model){
         System.out.println(sort);
         if(sort == 1) {
-            model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.ASC, "addDate"))));
-        } else if (sort == 2) {
-            model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.DESC, "addDate"))));
-        } else if (sort == 3) {
             model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.ASC, "category"))));
+        } else if (sort == 2) {
+            model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.DESC, "category"))));
+        } else if (sort == 4) {
+            model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.ASC, "addDate"))));
         } else if (sort == 5) {
             model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.DESC, "addDate"))));
         }
 
         return "/informations/sharedinformations";
+    }
+
+    @GetMapping({"/informations/choseninformation/{id}"})
+    public String chosenInformation(@PathVariable Long id, Model model){
+
+        model.addAttribute("information", this.informationRepository.getById(id));
+
+        return "/informations/choseninformation";
     }
 }

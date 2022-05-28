@@ -25,7 +25,7 @@
 
         <ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
             <li class="nav-item">
-                <a href="#" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" id="all-category">
+                <a th:href="@{/informations/sharedinformations}" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" id="all-category">
                     <i class="icon-layers mr-1"></i><span class="d-none d-md-block">All Notes</span>
                 </a>
             </li>
@@ -49,7 +49,7 @@
         <div class="tab-content bg-transparent">
             <div id="note-full-container" class="note-has-grid row">
                 <div th:each="information : ${informations}" th:if="${information.isShared == true}" class="col-md-4 single-note-item all-category" >
-                    <a th:href="'/informations/choseninformation' + ${information.id}">
+                    <a th:href="'/informations/choseninformation/' + ${information.id}">
                     <div class="card card-body" id="card">
                         <span class="side-stick"></span>
                         <p class=" font-12 text-muted" th:text="'Category: ' +${information.category}"></p>

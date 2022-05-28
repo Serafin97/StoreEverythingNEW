@@ -3,9 +3,67 @@
 <head>
     <div th:replace="/fragments/header.html :: header"/>
 
+    <style>
+        .vertical-center {
+            height:100%;
+            width:100%;
+
+            text-align: center;
+        }
+
+        .vertical-center:before {
+            content: " ";
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+
+        .vertical-center > .container {
+            max-width: 100%;
+
+            display: inline-block;
+            vertical-align: middle;
+            font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
+
 </head>
 <body>
 <div th:replace="/fragments/header.html :: navbar"/>
+
+<!--    <div class="jumbotron vertical-center">
+        <div class="container">
+            <div id="note-full-container" class="note-has-grid row">
+                <div th:if="${information.isShared == true}" class="col-md-4 single-note-item all-category" >
+                    <a th:href="'/informations/choseninformation/' + ${information.id}">
+                        <div class="card card-body" id="card">
+                            <span class="side-stick"></span>
+                            <p class=" font-12 text-muted" th:text="'Category: ' +${information.category}"></p>
+                            <h5 class=" text-truncate w-75 mb-0" th:text="${information.title}" ></h5>
+                            <p class=" font-12 text-muted" th:text="${information.addDate} + ' by ' + ${information.user.username}"></p>
+                            <div class="note-content">
+                                <p class="note-inner-content text-muted text-truncate" th:text="${information.content}"></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>-->
+
+<div calss="container">
+    <div class="row">
+    <div class="col-sm-3">
+
+    </div>
+    <div  class="col-sm-6">
+
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+    </div>
+</div>
+
+
 
 </body>
 </html>
