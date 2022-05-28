@@ -24,16 +24,14 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="page-content container note-has-grid">
 
-    <ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
+    <ul class="nav nav-pills p-3 bg-white rounded-pill align-items-center">
         <li class="nav-item">
-            <a th:href="@{/informations/sharedinformations}" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" id="all-category">
-                <i class="icon-layers mr-1"></i><span class="d-none d-md-block">All Notes</span>
-            </a>
+            <a th:href="@{/informations/sharedinformations}" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" id="all-category"></a>
         </li>
 
         <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/1}" >Category A-Z</a></li>
         <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/2}" >Category Z-A</a></li>
-        <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/3}" >Category: Most popular</a></li>
+<!--        <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/3}" >Category: Most popular</a></li>-->
         <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/4}" >Date &#8593</a></li>
         <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/5}" >Date &#8595</a></li>
 
@@ -46,6 +44,10 @@
                         </select>
                     </li>-->
     </ul>
+
+    <div>
+        <a class="btn btn-success mt-3" th:href="'/informations/addinformation'">Add note</a>
+    </div>
 
     <div class="tab-content bg-transparent">
         <div id="note-full-container" class="note-has-grid row">
