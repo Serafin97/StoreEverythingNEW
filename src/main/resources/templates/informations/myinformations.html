@@ -1,11 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <div th:replace="/fragments/header.html :: header"/>
 
+    <style>
+        a{
+            color: black;
+            text-decoration:none;
+        }
+
+        a:hover{
+            color: lightskyblue;
+            text-decoration:none;
+            cursor:pointer;
+        }
+
+    </style>
+
 </head>
 <body>
-    <div th:replace="/fragments/header.html :: navbar"/>
-    my informations
+<div th:replace="/fragments/header.html :: navbar"/>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="page-content container note-has-grid">
+
+    <ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
+        <li class="nav-item">
+            <a th:href="@{/informations/sharedinformations}" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" id="all-category">
+                <i class="icon-layers mr-1"></i><span class="d-none d-md-block">All Notes</span>
+            </a>
+        </li>
+
+        <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/1}" >Category A-Z</a></li>
+        <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/2}" >Category Z-A</a></li>
+        <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/3}" >Category: Most popular</a></li>
+        <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/4}" >Date &#8593</a></li>
+        <li class="nav-item  "><a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" th:href="@{/informations/sharedinformations/5}" >Date &#8595</a></li>
+
+        <!--            <li>
+                        <select class="form-select mt-3" >
+                            <option value="1">Category A-Z</option>
+                            <option value="2">Category Z-A</option>
+                            <option value="3">Date &#8593</option>
+                            <option value="4">Date &#8595</option>
+                        </select>
+                    </li>-->
+    </ul>
+
+    <div class="tab-content bg-transparent">
+        <div id="note-full-container" class="note-has-grid row">
+            <div th:each="information : ${informations}" th:if="${information.user.username == loggeduser}" class="col-md-4 single-note-item all-category mt-1" >
+                <a th:href="'/informations/choseninformation/' + ${information.id}">
+                    <div class="card card-body" id="card">
+                        <span class="side-stick"></span>
+                        <p class=" font-12 text-muted" th:text="'Category: ' +${information.category}"></p>
+                        <h5 class=" text-truncate w-75 mb-0" th:text="${information.title}" ></h5>
+                        <p class=" font-12 text-muted" th:text="${information.addDate} + ' by ' + ${information.user.username}"></p>
+                        <div class="note-content">
+                            <p class="note-inner-content text-muted text-truncate" th:text="${information.content}"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
