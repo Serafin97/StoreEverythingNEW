@@ -4,6 +4,55 @@
     <div th:replace="/fragments/header.html :: header"/>
 </head>
 <body>
+<div th:replace="/fragments/header.html :: navbar"/>
 
+
+<div calss="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div  class="col-md-6">
+            <div id="note-full-container" class="note-has-grid row">
+                <div class=" single-note-item all-category" >
+
+                    <div class="card card-body" id="card">
+                        <span class="side-stick"></span>
+                            <div class="form-items">
+                                <h4 class=" w-75 mb-0">Add note: </h4>
+
+                                <form class="requires-validation" th:action="@{/informations/addinformation}" th:object="${newinformation}" method="post">
+
+                                    <div class="pb-1">
+                                        <input class="form-control" type="text"  placeholder="Title" th:field="*{title}" required>
+                                        <p class="alert alert-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</p>
+                                    </div>
+
+                                    <div class="pb-1">
+                                        <input class="form-control" type="text"  placeholder="Category" th:field="*{category}" required>
+                                        <p class="alert alert-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Category Error</p>
+                                    </div>
+
+                                    <div class="pb-1">
+                                        <input class="form-control" type="text"  placeholder="Content" th:field="*{content}" required>
+                                        <p class="alert alert-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Content Error</p>
+                                    </div>
+
+                                    <div class="pb-1">
+                                        <label for="sharecheckbox">Set public: </label>
+                                        <input id="sharecheckbox" type="checkbox" th:field="*{shared}" >
+                                    </div>
+
+                                    <div class="form-button mt-3">
+                                        <button type="submit" class="btn btn-primary">Add Note</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
 </body>
 </html>

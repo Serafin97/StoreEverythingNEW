@@ -101,7 +101,10 @@ public class InformationController {
     }
 
     @GetMapping({"/informations/addinformation"})
-    public String addInformationForm(){
+    public String addInformationForm(Model model){
+
+        model.addAttribute("newinformation", new Information());
+
         return "/informations/addinformation";
     }
 
@@ -111,7 +114,7 @@ public class InformationController {
             return "/informations/addinformation";
         }
 
-        LocalDate date = LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        Date date = new Date();
         information.setAddDate(date);
 
         String username = request.getUserPrincipal().getName();
@@ -119,16 +122,34 @@ public class InformationController {
         information.setUser(user);
 
         informationRepository.save(information);
+        model.addAttribute("newinformation", information);
 
-        return "redirect/informations/myinformations";
+        return "redirect:/informations/myinformations";
     }
 
+    @GetMapping({"/informations/editinformation/{id}"})
+    public String editInformationForm(@PathVariable Long id, Model model){
 
-
-    @GetMapping({"/informations/choseninformation/edit/{id}"})
-    public String editInformation(@PathVariable Long id){
+        model.addAttribute("information", informationRepository.findById(id).get());
 
         return "/informations/editinformation";
+    }
+
+    @PostMapping({"/informations/editinformation/{id}"})
+    public String editInformation(@Valid @ModelAttribute("information") Information information, BindingResult result, Model model, HttpServletRequest request){
+
+        if(result.hasErrors()){
+            return "/informations/editinformation";
+        }
+
+        String username = request.getUserPrincipal().getName();
+        User user = userRepository.findByUsername(username);
+        information.setUser(user);
+
+        informationRepository.save(information);
+        model.addAttribute("information", information.getId());
+
+        return "redirect:/informations/myinformations";
     }
 
 }

@@ -36,10 +36,10 @@
                                 <p class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</p>
                             </div>
 
-<!--                            <div class="col-md-12 mt-3">
-                                <input class="form-control" type="text" placeholder="Password" th:field="*{password}" minlength="5" required>
-                                <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</p>
-                            </div>-->
+                            <div class="col-md-12 mt-3">
+                                <input class="form-control" type="text" placeholder="Password" th:field="*{password}" minlength="5"  readonly>
+                                <!--<p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</p>-->
+                            </div>
 
                             <div class="col-md-12 mt-3 ">
                                 <input class="form-control" type="number" placeholder="Age" th:field="*{age}" required>

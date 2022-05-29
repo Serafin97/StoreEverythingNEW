@@ -3,6 +3,7 @@ package com.example.storeeverything.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,15 +33,16 @@ public class Information {
     private String content;
 
     @Column(name = "addDate", nullable = false)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "MM/dd/yyyy")
-    private LocalDate addDate;
+    @Type(type="date")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    private Date addDate;
 
     @Column(name = "category", nullable = false)
     @Pattern(regexp = "^[a-z]{3,20}$", message = "Kategoria musi składać się tylko z małych liter.")
     private String category;
 
-    @Column(name = "isShared", nullable = false, columnDefinition = "boolean default true")
+    @Column(name = "isShared", nullable = false)
     private boolean isShared;
 
     @ManyToOne
@@ -51,7 +53,7 @@ public class Information {
     public Information() {
     }
 
-    public Information(String title, String content, LocalDate addDate, String category) {
+    public Information(String title, String content, Date addDate, String category) {
         this.title = title;
         this.content = content;
         this.addDate = addDate;

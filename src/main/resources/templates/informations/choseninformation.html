@@ -54,7 +54,7 @@
                                 <label style="font-size:19px" for="notelink" >Link: </label><input class="" type="text" id="notelink" th:value="${link}" style="width: 500px" readonly>
                             </div>
                             <div class ="float-end">
-                                <a class="btn btn-dark mt-3" th:href="'/informations/choseninformation/edit/' + ${information.id}">Edit</a>
+                                <a class="btn btn-dark mt-3" th:href="'/informations/editinformation/' + ${information.id}">Edit</a>
                                 <a class="btn btn-danger mt-3" th:href="'/informations/choseninformation/remove/' + ${information.id}">Delete</a>
                             </div>
                         </div>
