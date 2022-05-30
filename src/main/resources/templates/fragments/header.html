@@ -29,7 +29,9 @@
             <div class="collapse navbar-collapse" >
 
                 <ul class="navbar-nav me-auto text-light" >
+                    <div sec:authorize="isAuthenticated()">
                     <li class="nav-item  "><a class="nav-link" th:href="@{/informations/sharedinformations}" >Notes</a></li>
+                    </div>
                     <div sec:authorize="isAuthenticated()">
                         <div sec:authorize="hasAnyAuthority('ADMIN','FULLUSER')">
                             <li class="nav-item  "><a class="nav-link" th:href="@{/informations/myinformations}" >My notes</a></li>
