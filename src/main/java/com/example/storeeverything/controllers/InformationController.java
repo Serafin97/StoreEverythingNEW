@@ -43,7 +43,7 @@ public class InformationController {
 
     @GetMapping({"/informations/sharedinformations/{sort}"})
     public String sharedInformationsSort(@PathVariable int sort, Model model){
-        System.out.println(sort);
+
         if(sort == 1) {
             model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.ASC, "category"))));
         } else if (sort == 2) {
@@ -67,8 +67,8 @@ public class InformationController {
     }
 
     @GetMapping({"/informations/myinformations/{sort}"})
-    public String myInformationsSort(@PathVariable int sort, Model model){
-        System.out.println(sort);
+    public String myInformationsSort(@PathVariable int sort, Model model, HttpServletRequest request){
+        model.addAttribute("loggeduser", request.getUserPrincipal().getName());
         if(sort == 1) {
             model.addAttribute("informations", informationRepository.findAll(PageRequest.of(0, 30, Sort.by(Sort.Direction.ASC, "category"))));
         } else if (sort == 2) {

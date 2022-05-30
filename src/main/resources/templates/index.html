@@ -6,12 +6,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik+Glitch&display=swap" rel="stylesheet">
+
+    <style>
+        h1{
+            font-family: Lobster;
+            font-size: 120px;
+            color: lightpink;
+            text-align: center;
+        }
+    </style>
+
 </head>
 <body >
     <div th:replace="/fragments/header.html :: navbar"/>
 
-    <div class="container-fluid bg-dark">
+    <div calss="container">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div style="margin-top: 40px;"  class="col-md-8">
+                <h1 >Welcome to </h1><br>
+                <h1>Store Everything Site!</h1>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
     </div>
-    <span> Welcome to StoreEverything </span>
+
 </body>
 </html>

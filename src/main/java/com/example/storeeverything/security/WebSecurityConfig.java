@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 
         httpSecurity.authorizeRequests()
-                .antMatchers("/*", "/css/**", "/webjars/**","/h2/**","/","/index" ).permitAll()
+                .antMatchers("/*", "/css/**", "/webjars/**","/h2/**","/","/index").permitAll()
                 .antMatchers("/informations/**").hasAnyAuthority("FULLUSER","USER", "ADMIN")
                 .antMatchers("/informations/myinformations").hasAnyAuthority("FULLUSER", "ADMIN")
                 .antMatchers("/adminPanel/**").hasAnyAuthority("ADMIN")
